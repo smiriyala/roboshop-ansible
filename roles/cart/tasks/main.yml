@@ -1,0 +1,3 @@
+- name: Print cart
+  debug:
+    msg: cart
