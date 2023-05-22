@@ -17,6 +17,8 @@
     - rabbitmq-server
     - erlang
   state: installed
+
+
 # systemctl enable rabbitmq-server 
 # systemctl start rabbitmq-server 
 # Start RabbitMQ Service
@@ -31,9 +33,7 @@
 #But this user cannot be used to connect. Hence, we need to create one user for the application.
 # rabbitmqctl add_user roboshop roboshop123
 # rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
-- name: |-
-    Add user to server and assign full access control on / vhost.
-    The user might have permission rules for other vhost but you don't care.
+- name: add application user
   community.rabbitmq.rabbitmq_user:
     user: roboshop
     password: roboshop123
