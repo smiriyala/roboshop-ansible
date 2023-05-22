@@ -1,3 +1,35 @@
-- name: Print mongodb
-  debug:
-    msg: mongo
+# Setup the MongoDB repo file
+# /etc/yum.repos.d/mongo.repo
+- name: Setup Mongo YUM repo file
+  ansible.builtin.copy:
+    src: mongo.repo
+    dest: /etc/yum.repos.d/mongo.repo
+
+# yum install mongodb-org -y 
+- name: Mongodb installation
+  ansible.builtin.yum:
+  name: mongodb-org
+  state: installed
+
+
+# Usually MongoDB opens the port only to localhost(127.0.0.1), meaning this service can be accessed by the application 
+#that is hosted on this server only.However, we need to access this service to be accessed by another server, 
+#So we need to change the config accordingly. Update listen address from 127.0.0.1 to 0.0.0.0 in /etc/mongod.conf
+
+# HINT
+# You can edit file by using vim /etc/mongod.conf
+- name: Update mongodb listener address by replace file
+  ansible.builtin.replace:
+    path: /etc/mongod.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
+
+
+# Start & Enable MongoDB Service
+# systemctl enable mongod 
+# systemctl start mongod 
+- name: Restart and enable Mongodb service
+  ansible.builtdin.systemd:
+    name: mongod
+    state: started
+    enable: true
