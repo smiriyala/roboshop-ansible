@@ -31,14 +31,14 @@
 # vim /etc/nginx/default.d/roboshop.conf 
 - name: Create Roboshop config in Nginx
   ansible.builtin.copy:
-    src: roboshop.cong
+    src: roboshop.conf
     dest: /etc/nginx/default.d/roboshop.conf
 
 
 # Start & Enable Nginx service
 # systemctl enable nginx 
 # systemctl start nginx 
-- name: Start Nginx service
+- name: Restart Nginx service
   ansible.builtin.systemd:
     name: nginx
     state: restarted
