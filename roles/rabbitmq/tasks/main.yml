@@ -26,7 +26,7 @@
   vars:
     packages:
     - rabbitmq-server
-    - erlang
+    - erlang-21.3.8.15-1.el8.x86_64
 
 
 # systemctl enable rabbitmq-server 
