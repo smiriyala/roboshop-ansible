@@ -1,3 +1,44 @@
-- name: Print rabbitmq
-  debug:
-    msg: rabbitmq
+# Configure YUM Repos from the script provided by vendor.
+# curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
+- name: Setup Earling Repos
+  ansible.builtin.shell: curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
+
+
+# Configure YUM Repos for RabbitMQ.
+# curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
+- name: Install RabbitMQ Repos
+  ansible.builtin.shell: curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
+
+
+# Install RabbitMQ
+# yum install rabbitmq-server -y 
+- name: install Earling and RabbitMQ
+  ansible.builtin.yum:
+    - rabbitmq-server
+    - erlang
+  state: installed
+# systemctl enable rabbitmq-server 
+# systemctl start rabbitmq-server 
+# Start RabbitMQ Service
+- name: Start RabbitMQ service
+  ansible.builtin.systemd:
+    name: rabbitmq-server
+    state: started
+    enabled: yes
+
+
+# RabbitMQ comes with a default username / password as guest/guest. 
+#But this user cannot be used to connect. Hence, we need to create one user for the application.
+# rabbitmqctl add_user roboshop roboshop123
+# rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
+- name: |-
+    Add user to server and assign full access control on / vhost.
+    The user might have permission rules for other vhost but you don't care.
+  community.rabbitmq.rabbitmq_user:
+    user: roboshop
+    password: roboshop123
+    vhost: /
+    configure_priv: .*
+    read_priv: .*
+    write_priv: .*
+    state: present
