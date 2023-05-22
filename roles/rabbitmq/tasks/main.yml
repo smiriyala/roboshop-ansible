@@ -12,12 +12,21 @@
 
 # Install RabbitMQ
 # #yum install rabbitmq-server -y 
+# - name: install Earling and RabbitMQ
+#   ansible.builtin.yum:
+#     name:
+#       - rabbitmq-server
+#       - erlang
+#     state: installed
+
+# replace above in below
 - name: install Earling and RabbitMQ
   ansible.builtin.yum:
-    name:
-      - rabbitmq-server
-      - erlang
-    state: installed
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - rabbitmq-server
+    - erlang
 
 
 # systemctl enable rabbitmq-server 
@@ -28,7 +37,6 @@
     name: rabbitmq-server
     state: started
     enabled: yes
-
 
 # RabbitMQ comes with a default username / password as guest/guest. 
 #But this user cannot be used to connect. Hence, we need to create one user for the application.
