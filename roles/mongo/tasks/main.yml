@@ -8,8 +8,8 @@
 # yum install mongodb-org -y 
 - name: Mongodb installation
   ansible.builtin.yum:
-  name: mongodb-org
-  state: installed
+    name: mongodb-org
+    state: installed
 
 
 # Usually MongoDB opens the port only to localhost(127.0.0.1), meaning this service can be accessed by the application 
@@ -32,4 +32,4 @@
   ansible.builtdin.systemd:
     name: mongod
     state: started
-    enable: true
+    enabled: true
