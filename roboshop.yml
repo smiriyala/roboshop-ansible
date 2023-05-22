@@ -1,4 +1,6 @@
 - name: Run roboshop Setup
   hosts: all
+  #become is escalate you to the root user
+  become: true
   roles:
     - "{{ role_name }}"
