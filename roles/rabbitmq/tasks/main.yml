@@ -11,7 +11,7 @@
 
 
 # Install RabbitMQ
-# yum install rabbitmq-server -y 
+# #yum install rabbitmq-server -y 
 - name: install Earling and RabbitMQ
   ansible.builtin.yum:
     - rabbitmq-server
