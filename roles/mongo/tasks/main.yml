@@ -29,7 +29,7 @@
 # systemctl enable mongod 
 # systemctl start mongod 
 - name: Restart and enable Mongodb service
-  ansible.builtdin.systemd:
+  ansible.builtin.systemd:
     name: mongod
     state: started
     enabled: true
