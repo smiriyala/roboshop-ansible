@@ -15,6 +15,12 @@
     state: absent
 
 
+- name: Create Application Directory
+  ansible.builtin.file:
+    path: /usr/share/nginx/html
+    state: directory
+
+
 # Download the frontend content
 # curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend.zip 
 # Extract the frontend content.
