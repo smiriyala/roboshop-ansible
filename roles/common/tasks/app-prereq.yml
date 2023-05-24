@@ -15,7 +15,12 @@
 #     fi
 #     status_check $?
 
-- name: Craeate App directory
+- name: Delete App directory
+  ansible.builtin.file:
+    name: /app
+    state: absent
+
+- name: Create App directory
   ansible.builtin.file:
     name: /app
     state: directory
@@ -24,11 +29,6 @@
 #     print_head "remove old log content"
 #     rm -rf /app/* &>>${log_file}
 #     status_check $?
-- name: Remove file (delete file)
-  ansible.builtin.file:
-    path: /app/*
-    state: absent
-
 
 #     print_head "download app content"
 #     curl -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>>${log_file}
@@ -42,4 +42,4 @@
   ansible.builtin.unarchive: 
     src: https://roboshop-artifacts.s3.amazonaws.com/{{ component }}.zip
     dest: /app
-    state: installed
+    remote_src: true 
