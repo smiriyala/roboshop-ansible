@@ -13,13 +13,14 @@
   ansible.builtin.import_tasks:
     file: app-prereq.yml
 
+#     Go to /app folder then run shell commands
 #     print_head "Donwload Dependencies & Packages"
 #     go mod init dispatch &>>${log_file}
 #     go get &>>${log_file}
 #     go build &>>${log_file}
 #     status_check $?
 
-- name: Python Installation
+- name: GoLang Installation
   ansible.builtin.shell: go mod init dispatch ; go get ; go build
   args:
     chdir: /app
