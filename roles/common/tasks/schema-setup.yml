@@ -1,0 +1,51 @@
+#  if [ "${schema_type}" == "mongo" ]; then
+#         print_head "copy mongodb repo file"
+#         cp ${code_dir}/configs/mongodb.repo /etc/yum.repos.d/mongo.repo &>>${log_file}
+#         status_check $?
+
+#         print_head "Intall mongodb client"
+#         yum install mongodb-org-shell -y &>>${log_file}
+#         status_check $?
+
+#         print_head "Load schema of ${component} component"
+#         mongo --host mongodb-dev.devopsforyou.online </app/schema/${component}.js &>>${log_file}
+#         status_check $?
+#     elif [ "${schema_type}" == "mysql" ]; then
+        
+#         print_head "Installing Mysql"
+#         yum install mysql -y &>>${log_file}
+#         status_check $?
+
+#         print_head "Load schema of ${component} component"
+#         mysql -h mysql-dev.devopsforyou.online -uroot -p${mysql_root_password} < /app/schema/${component}.sql &>>${log_file}
+#         status_check $?
+#     fi
+- name: MongoDB schema setup
+  when: schema_type == "mongo"
+  block:
+    - name: Copy MongoDB repo file
+      ansible.builtin.copy:
+        src: mongodb.repo
+        dest: /etc/yum.repos.d/mongo.repo
+    
+    - name: Install MongoDB client
+      ansible.builtin.yum:
+        name: mongodb-org-shell
+        state: installed
+
+    - name: Load Schema of {{component}} component
+      # can be used mongo module but later to other sevices, we need to use shell for AWS etc,
+      # + hence going with shell now.
+      ansible.builtin.shell: mongo --host mongodb-dev.devopsforyou.online </app/schema/{{ component }}.js 
+
+
+- name: Mysql Client setup
+  when: schema_type == "mysql"
+  block:
+    - name: Install Mysql client
+      ansible.builtin.yum:
+        name: mysql
+        state: installed
+
+    - name: Load Schema for mysql
+      ansible.builtin.shell: mysql -h mysql-dev.devopsforyou.online -uroot -pRoboShop@1 < /app/schema/{{ component }}.sql

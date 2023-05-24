@@ -1,0 +1,44 @@
+# print_head "Configure NodeJs Repo"
+#     curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${log_file}
+#     status_check $?
+
+- name: Configure Nodejs Repo
+  ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x | bash
+
+
+
+#     print_head "Install Nodejs"
+#     yum install nodejs -y &>>${log_file}
+#     status_check $?
+- name: Install NodeJs
+  ansible.builtin.yum:
+    name: nodejs
+    state: installed
+
+#     app_prereq_setup
+# Need to realod from separate task
+- name: Load App prerequisite from another task
+  ansible.builtin.import_tasks:
+  file: app-prereq.yml
+
+
+#     print_head "install nodeJs Dependents"
+#     npm install &>>${log_file}
+#     status_check $?
+- name: Install NodeJs Dependencies
+  ansible.builtin.npm:
+    path: /app
+
+
+# systemd_setup
+- name: SystemD setup
+  ansible.builtin.import_tasks:
+    file: systemd-setup.yml
+
+
+# db_schema_setup
+# schema setup import from anohter task
+- name: Schema setup
+  ansible.builtin.import_tasks:
+    file: schema-setup.yml
+  when: schema_type is defined

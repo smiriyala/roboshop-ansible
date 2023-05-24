@@ -1,0 +1,34 @@
+# print_head "copy config service to systemD service"
+#     cp ${code_dir}/configs/${component}.service /etc/systemd/system/${component}.service &>>${log_file}
+#     status_check $?
+
+- name: Copy config servie to SystemD service
+  ansible.builtin.files:
+    src: "{{ component}}.service"
+    dest: /etc/systemd/system/{{ component }}.service
+
+
+#     #payment service need a password roboshop123, which is wrapping in systemd without status checking, 
+#     #hence other service wont impact due to ROBOSHOP_USER_PASSWORD keyword which is only exits in payment service
+#     sed -i -e "s/ROBOSHOP_USER_PASSWORD/${roboshop_app_password}/" /etc/systemd/system/${component}.service &>>${log_file}
+
+# THIS IS GOING TO BE HANDLED LATER?
+
+
+#ALL 3 handled in single playbook in below
+#     print_head "Reload SystemD"
+#     systemctl daemon-reload &>>${log_file}
+#     status_check $?
+
+#     print_head "enable ${component} service"
+#     systemctl enable ${component} &>>${log_file}
+#     status_check $?
+
+#     print_head "Restart ${component} service"
+#     systemctl restart ${component} &>>${log_file}
+- name: Relaod SystemD Enable Service and Restart Service
+  ansible.builtin.systemd:
+    name: "{{ component }}"
+    state: restarted
+    enabled: true
+    daemon-reload: true

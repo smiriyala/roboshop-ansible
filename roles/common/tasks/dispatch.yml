@@ -1,0 +1,35 @@
+# print_head "Installing golang"
+#     yum install golang -y &>>${log_file}
+#     status_check $?
+- name: Install golang for dispatch service
+  ansible.builtin.yum:
+    name: golang
+    state: installed
+
+
+#     #prereq function
+#     app_prereq_setup
+- name: Load App prerequisite from another task
+  ansible.builtin.import_tasks:
+  file: app-prereq.yml
+
+#     print_head "Donwload Dependencies & Packages"
+#     go mod init dispatch &>>${log_file}
+#     go get &>>${log_file}
+#     go build &>>${log_file}
+#     status_check $?
+
+- name: Python Installation
+  ansible.builtin.package:
+    name: 
+      - go mod init dispatch
+      - go get
+      - go build
+    state: installed
+
+#     #systemd setup function
+#     systemd_setup
+- name: SystemD setup
+  ansible.builtin.import_tasks:
+    file: systemd-setup.yml
+

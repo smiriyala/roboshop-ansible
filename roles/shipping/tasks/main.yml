@@ -1,3 +1,4 @@
-- name: Print shipping
-  debug:
-    msg: shipping
+- name: Load Java for Shipping service
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: java
