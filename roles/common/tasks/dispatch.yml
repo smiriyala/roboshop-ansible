@@ -20,12 +20,9 @@
 #     status_check $?
 
 - name: Python Installation
-  ansible.builtin.package:
-    name: 
-      - go mod init dispatch
-      - go get
-      - go build
-    state: installed
+  ansible.builtin.shell: go mod init dispatch ; go get ; go build
+  args:
+    chdir: /app
 
 #     #systemd setup function
 #     systemd_setup
