@@ -1,4 +1,4 @@
 - name: Load Python for Payment Service
   ansible.builtin.import_role:
     name: common
-    tasks_from: Payment
+    tasks_from: payment
