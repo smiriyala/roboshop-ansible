@@ -36,9 +36,12 @@
 # Create Nginx Reverse Proxy Configuration.
 # vim /etc/nginx/default.d/roboshop.conf 
 - name: Create Roboshop config in Nginx
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: roboshop.conf
     dest: /etc/nginx/default.d/roboshop.conf
+
+    #Note: Instead of copy from ansible.builtin.copy, we updated with temlates, 
+    #however /files renamed with /tmeplate in folder structure
 
 
 # Start & Enable Nginx service
