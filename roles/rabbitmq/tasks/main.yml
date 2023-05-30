@@ -24,9 +24,9 @@
   ansible.builtin.yum:
     name: "{{ packages }}"
     vars:
-      packages:
-        - rabbitmq-server
-        - erlang-25.0.2-1.el8.x86_64
+    packages:
+      - rabbitmq-server
+      - erlang-25.0.2-1.el8.x86_64
 
 # - name: Install ErLang and RabbitMQ
 #   ansible.builtin.yum:
