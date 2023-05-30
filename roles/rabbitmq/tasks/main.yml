@@ -20,20 +20,20 @@
 #     state: installed
 
 # replace above in below
-- name: install Earling and RabbitMQ
-  ansible.builtin.yum:
-    name: "{{ packages }}"
-    vars:
-    packages:
-      - rabbitmq-server
-      - erlang-25.0.2-1.el8.x86_64
-
-# - name: Install ErLang and RabbitMQ
+# - name: install Earling and RabbitMQ
 #   ansible.builtin.yum:
-#     name:
+#     name: "{{ packages }}"
+#     vars:
+#     packages:
 #       - rabbitmq-server
-#       - erlang
-#     state: installed
+#       - erlang-25.0.2-1.el8.x86_64
+
+- name: Install ErLang and RabbitMQ
+  ansible.builtin.yum:
+    name:
+      - rabbitmq-server
+      - erlang
+    state: installed
 
 
 # systemctl enable rabbitmq-server 
