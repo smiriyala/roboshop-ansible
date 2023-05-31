@@ -1,10 +1,10 @@
 [Unit]
 Description = Dispatch Service
 [Service]
-User=roboshop
+User={{ lookup('aws_ssm', '{{env}}.{{component}}.user', region='us-east-1') }}
 Environment=AMQP_HOST={{ lookup('aws_ssm', '{{env}}.{{component}}.amqp_host', region='us-east-1') }}
-Environment=AMQP_USER=roboshop
-Environment=AMQP_PASS=roboshop123
+Environment=AMQP_USER={{ lookup('aws_ssm', '{{env}}.{{component}}.amqp_user', region='us-east-1') }}
+Environment=AMQP_PASS={{ lookup('aws_ssm', '{{env}}.{{component}}.amqp_pass', region='us-east-1') }}
 ExecStart=/app/dispatch
 SyslogIdentifier=dispatch
 

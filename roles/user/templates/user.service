@@ -1,7 +1,7 @@
 [Unit]
 Description = User Service
 [Service]
-User=roboshop
+User={{ lookup('aws_ssm', '{{env}}.{{component}}.user', region='us-east-1') }}
 Environment=MONGO={{ lookup('aws_ssm', '{{env}}.{{component}}.mongo', region='us-east-1') }}
 Environment=REDIS_HOST={{ lookup('aws_ssm', '{{env}}.{{component}}.redis_host', region='us-east-1') }}
 Environment=MONGO_URL="{{ lookup('aws_ssm', '{{env}}.{{component}}.mongo_url', region='us-east-1') }}"
