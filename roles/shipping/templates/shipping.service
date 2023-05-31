@@ -2,9 +2,9 @@
 Description=Shipping Service
 
 [Service]
-User="{{ lookup('aws_ssm', '{{env}}.{{component}}.user', region='us-east-1') }}"
-Environment=CART_ENDPOINT="{{ lookup('aws_ssm', '{{env}}.{{component}}.cart_endpoint', region='us-east-1') }}"
-Environment=DB_HOST="{{ lookup('aws_ssm', '{{env}}.{{component}}.db_host', region='us-east-1') }}"
+User=roboshop
+Environment=CART_ENDPOINT=cart-dev.devopsforyou.online:8080
+Environment=DB_HOST=mysql-dev.devopsforyou.online
 ExecStart=/bin/java -jar /app/shipping.jar
 SyslogIdentifier=shipping
 
