@@ -47,5 +47,5 @@
         name: mysql
         state: installed
 
-- name: Load Schema for mysql
-  ansible.builtin.shell: mysql -h mysql-dev.devopsforyou.online -uroot -pRoboShop@1 < /app/schema/{{ component }}.sql
+    - name: Load Schema for mysql
+      ansible.builtin.shell: mysql -h mysql-dev.devopsforyou.online -uroot -pRoboShop@1 < /app/schema/{{ component }}.sql
