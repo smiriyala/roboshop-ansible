@@ -1,0 +1,11 @@
+- name: Setup hostname
+  ansible.builtin.shell: set-hostname {{ component }}
+
+#command addon installation aread where we can creaet comman roles then used in each service based roels
+#form frontend to dispatch)
+- name: Install Node Exporter
+  ansible.builtin.import_role:
+    name: prometheus
+    #exporter yml file is being called to execute
+    task_from: exporter
+  when: node_exporter

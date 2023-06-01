@@ -1,0 +1,7 @@
+# this value can be overriden by command prompt using -e
+# defaults - is least prioritized varaible, which is ansible picked ukp automatically
+prometheus_server: false
+node_exporter: false
+exporter_url: https://github.com/prometheus/node_exporter/releases/download/v1.6.0/node_exporter-1.6.0.linux-amd64.tar.gz
+# we are getting the directory created by ansible node_exporter during installaiton to execute and run
+exporter_dir: "{{ exporter_url | split('/') | last | regex_replace('.tar.gz')}}"
