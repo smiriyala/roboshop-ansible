@@ -1,6 +1,6 @@
 - name: Prometheus server Installation
   ansible.builtin.unarchive:
-    src: "{{ prometheus_dir }}"
+    src: "{{ prometheus_server_url }}"
     dest: /opt/prometheus
     remote_src: true
 
