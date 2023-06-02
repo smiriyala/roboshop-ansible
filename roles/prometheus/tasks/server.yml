@@ -1,7 +1,7 @@
 - name: Prometheus server Installation
   ansible.builtin.unarchive:
-    src: "{{ prometheus_server_url }}"
-    dest: /opt
+    src: "{{ prometheus_dir }}"
+    dest: /opt/prometheus
     remote_src: true
 
 # Service file placed from template folder
@@ -19,7 +19,7 @@
 - name: Update Prometheus configuration
   ansible.builtin.template:
     src: prometheus.yml
-    dest: /opt/prometheus/prometheus.yml
+    dest: /opt/{{ prometheus_dir }}/prometheus/prometheus.yml
 
 # as you updated config abvoe need a restart
 - name: Restart Prometheus

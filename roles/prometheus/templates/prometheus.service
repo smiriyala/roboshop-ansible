@@ -1,6 +1,8 @@
+[Install]
+WantedBy=multi-user.target
+
 [Unit]
 Description=Prometheus
-Documentation=https://prometheus.io/docs/introduction/overview/
 Wants=network-online.target
 After=network-online.target
 
@@ -8,9 +10,6 @@ After=network-online.target
 Type=simple
 WorkingDirectory=/opt/prometheus
 ExecStart=/opt/prometheus/prometheus
-
-SyslogIdentifier=prometheus
-Restart=always
 
 [Install]
 WantedBy=multi-user.target
