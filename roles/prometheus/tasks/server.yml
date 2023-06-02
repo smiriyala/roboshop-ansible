@@ -19,7 +19,7 @@
 - name: Update Prometheus configuration
   ansible.builtin.template:
     src: prometheus.yml
-    dest: /opt/prometheus/{{ prometheus_dir }}/prometheus.yml
+    dest: /opt/prometheus/prometheus-2.44.0.linux-amd64/prometheus.yml
 
 # as you updated config abvoe need a restart
 - name: Restart Prometheus
