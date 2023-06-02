@@ -1,3 +1,9 @@
+
+- name: Create App directory Directory
+  ansible.builtin.file:
+    path: /opt/prometheus
+    state: directory
+
 - name: Update Prometheus configuration
   ansible.builtin.template:
     src: prometheus.yml
