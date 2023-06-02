@@ -1,5 +1,6 @@
 # this value can be overriden by command prompt using -e
 # defaults - is least prioritized varaible, which is ansible picked ukp automatically
+prometheus_server_url: https://github.com/prometheus/prometheus/releases/download/v2.44.0/prometheus-2.44.0.linux-amd64.tar.gz
 prometheus_server: false
 node_exporter: false
 exporter_url: https://github.com/prometheus/node_exporter/releases/download/v1.6.0/node_exporter-1.6.0.linux-amd64.tar.gz
