@@ -12,6 +12,20 @@
     daemon-reload: true
 
 
+#grafana repo file copying
+# /etc/yum.repos.d/mongo.repo
+- name: Setup Mongo YUM repo file
+  ansible.builtin.copy:
+    src: grafana.repo
+    dest: /etc/yum.repos.d/grafana.repo
+
+# yum install mongodb-org -y 
+- name: Grafana installation
+  ansible.builtin.yum:
+    name: grafana
+    state: installed
+
+
 #===============
 
 # - name: Create App directory Directory
