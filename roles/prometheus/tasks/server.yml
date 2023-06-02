@@ -24,7 +24,7 @@
 # yum install mongodb-org -y 
 - name: Grafana installation
   ansible.builtin.yum:
-    name: grafana
+    name: grafana-9.5.2-1.x86_64
     state: installed
 
 - name: Restart and enable Grafana 
