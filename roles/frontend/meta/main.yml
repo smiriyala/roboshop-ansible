@@ -1,4 +1,4 @@
 ## main.yml file will be run before calling frontend playbook by ansible as 
 ## default file from comman role, main.yml is called first. 
 dependencies:
-  - role: comman
+  - role: common
