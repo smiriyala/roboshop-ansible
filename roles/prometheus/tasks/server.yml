@@ -1,30 +1,46 @@
-- name: Create App directory Directory
-  ansible.builtin.file:
-    path: /opt/prometheus
-    state: directory
-
-- name: Prometheus server Installation
-  ansible.builtin.unarchive:
-    src: "{{ prometheus_server_url }}"
-    dest: /opt/prometheus
-    remote_src: true
-
-# Service file placed from template folder
-- name: Copy Prometheus Service file to systemD exporter
-  ansible.builtin.template:
-    src: prometheus.service
-    dest: /etc/systemd/system/prometheus.service
-    remote_src: true
 
 - name: Update Prometheus configuration
   ansible.builtin.template:
     src: prometheus.yml
-    dest: /opt/prometheus/prometheus-2.44.0.linux-amd64/prometheus.yml
+    dest: /opt/prometheus/prometheus.yml
 
-# as you updated config abvoe need a restart
 - name: Restart Prometheus
   ansible.builtin.systemd:
     name: prometheus
     state: restarted
     enabled: true
     daemon-reload: true
+
+
+#===============
+
+# - name: Create App directory Directory
+#   ansible.builtin.file:
+#     path: /opt/prometheus
+#     state: directory
+
+# - name: Prometheus server Installation
+#   ansible.builtin.unarchive:
+#     src: "{{ prometheus_server_url }}"
+#     dest: /opt/prometheus
+#     remote_src: true
+
+# # Service file placed from template folder
+# - name: Copy Prometheus Service file to systemD exporter
+#   ansible.builtin.template:
+#     src: prometheus.service
+#     dest: /etc/systemd/system/prometheus.service
+#     remote_src: true
+
+# - name: Update Prometheus configuration
+#   ansible.builtin.template:
+#     src: prometheus.yml
+#     dest: /opt/prometheus/prometheus-2.44.0.linux-amd64/prometheus.yml
+
+# # as you updated config abvoe need a restart
+# - name: Restart Prometheus
+#   ansible.builtin.systemd:
+#     name: prometheus
+#     state: restarted
+#     enabled: true
+#     daemon-reload: true
