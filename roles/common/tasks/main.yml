@@ -7,5 +7,5 @@
   ansible.builtin.import_role:
     name: prometheus
     #exporter yml file is being called to execute
-    task_from: exporter
+    tasks_from: exporter
   when: node_exporter
