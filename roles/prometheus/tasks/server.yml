@@ -4,17 +4,10 @@
     src: prometheus.yml
     dest: /opt/prometheus/prometheus.yml
 
-- name: Restart Prometheus
-  ansible.builtin.systemd:
-    name: prometheus
-    state: restarted
-    enabled: true
-    daemon-reload: true
-
 
 #grafana repo file copying
 # /etc/yum.repos.d/mongo.repo
-- name: Setup Mongo YUM repo file
+- name: Setup Grafana YUM repo file
   ansible.builtin.copy:
     src: grafana.repo
     dest: /etc/yum.repos.d/grafana.repo
@@ -25,6 +18,13 @@
     name: grafana
     state: installed
 
+
+- name: Restart Prometheus
+  ansible.builtin.systemd:
+    name: prometheus
+    state: restarted
+    enabled: true
+    daemon-reload: true
 
 #===============
 
