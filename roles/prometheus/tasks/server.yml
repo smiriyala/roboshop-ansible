@@ -1,3 +1,8 @@
+- name: Create App directory Directory
+  ansible.builtin.file:
+    path: /opt/prometheus
+    state: directory
+
 - name: Prometheus server Installation
   ansible.builtin.unarchive:
     src: "{{ prometheus_server_url }}"
@@ -11,15 +16,10 @@
     dest: /etc/systemd/system/prometheus.service
     remote_src: true
 
-# - name: Create App directory Directory
-#   ansible.builtin.file:
-#     path: /opt/prometheus
-#     state: directory
-
 - name: Update Prometheus configuration
   ansible.builtin.template:
     src: prometheus.yml
-    dest: /opt/{{ prometheus_dir }}/prometheus/prometheus.yml
+    dest: /opt/prometheus/{{ prometheus_dir }}/prometheus.yml
 
 # as you updated config abvoe need a restart
 - name: Restart Prometheus
