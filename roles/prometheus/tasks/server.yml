@@ -14,24 +14,24 @@
 
 #GRAFANA INSTALLATION:
 
-#grafana repo file copying
-# /etc/yum.repos.d/mongo.repo
-- name: Setup Grafana YUM repo file
-  ansible.builtin.copy:
-    src: grafana.repo
-    dest: /etc/yum.repos.d/grafana.repo
+# #grafana repo file copying
+# # /etc/yum.repos.d/mongo.repo
+# - name: Setup Grafana YUM repo file
+#   ansible.builtin.copy:
+#     src: grafana.repo
+#     dest: /etc/yum.repos.d/grafana.repo
 
-# yum install mongodb-org -y 
-- name: Grafana installation
-  ansible.builtin.yum:
-    name: grafana-9.5.2-1.x86_64
-    state: installed
+# # yum install mongodb-org -y 
+# - name: Grafana installation
+#   ansible.builtin.yum:
+#     name: grafana-9.5.2-1.x86_64
+#     state: installed
 
-- name: Restart and enable Grafana 
-  ansible.builtin.systemd:
-    name: grafana
-    state: started
-    enabled: true
+# - name: Restart and enable Grafana 
+#   ansible.builtin.systemd:
+#     name: grafana
+#     state: started
+#     enabled: true
 
 #===============
 
