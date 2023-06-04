@@ -1,11 +1,15 @@
 groups:
 - name: roboshop Service alerts
   rules:
-  - alert: Service Down Alert - cart service
-    expr: node_systemd_unit_state(exported_name="cart.service", state="active")
+  {% for component in components %}
+
+  - alert: Service Down Alert - {{component}} service
+    expr: node_systemd_unit_state(exported_name="{{component}}.service", state="active")
     for: 30s
     labels:
       severity: critical
-      appName: cart
+      appName: {{component}}
     annotations:
-      summary: Service down on some server - Service Name - cart.service
+      summary: Service down on some server - Service Name - {{component}}.service
+
+  {% endfor %}
