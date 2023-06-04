@@ -5,10 +5,16 @@
     dest: /opt/prometheus/prometheus.yml
 
 ##Cppying Aleart configuration to prometheus 
-- name: Copy Alerts confugraiotn to Prometheus
+- name: Copy Alerts confugraiotn for server down
   ansible.builtin.template:
     src: alerts.yml
     dest: /opt/prometheus/alerts.yml
+
+##Cppying Aleart configuration for service donw 
+- name: Copy Alerts confugraiotn to Service down
+  ansible.builtin.template:
+    src: service-down-alerts.yml
+    dest: /opt/prometheus/service-down-alerts.yml
 
 - name: Restart Prometheus
   ansible.builtin.systemd:
