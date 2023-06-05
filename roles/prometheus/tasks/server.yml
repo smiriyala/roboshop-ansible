@@ -22,6 +22,28 @@
 - name: Check prometheus is started
   ansible.builtin.shell: netstat -lntp | grep 9090
 
+
+##Alert Manager Configuraiton
+- name: Update Alert manager configuraiton
+  ansible.builtin.template:
+    src: alertmanager.yml
+    dest: /opt/alertmanager/alertmanager.yml
+
+#Alert Manager restart
+- name: Restart AlertManager 
+  ansible.builtin.systemd:
+    name: alertmanager
+    state: restarted
+    enabled: true
+    daemon-reload: true
+
+#Check alert manager is started
+- name: Check Alertmanager is started
+  ansible.builtin.shell: netstat -lntp | grep 9093
+
+
+
+  
 #GRAFANA INSTALLATION:
 
 # #grafana repo file copying
