@@ -8,7 +8,7 @@ groups:
     for: 30s
     labels:
       severity: critical
-      appName: {{component.name}}
+      appName: {{ component.name }}
     annotations:
-      summary: Service down on some server - Service Name - {{component.name}}.service
+      summary: Service down on some server - Service Name - {{ component.name }}.service
   {% endfor %}
