@@ -3,3 +3,11 @@
   when: elk
   ansible.builtin.import_tasks:
     file: logstash.yml
+
+
+#Here we are calling filebeat.yml file which runs instalation of filebeat when filebeat variable is true for each component
+- name: Install filebeat
+#run when filebeat varible is true.
+  when: filebeat
+  ansible.builtin.import_tasks:
+    file: filebeat.yml

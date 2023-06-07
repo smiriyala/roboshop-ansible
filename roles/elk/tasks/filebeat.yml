@@ -1,0 +1,24 @@
+# repo file copied into application service(i.e frontend) machine
+- name: copy Elastic repo file in service 
+  ansible.builtin.template:
+    src: elastic.repo
+    dest: /etc/yum.repos.d/elastic.repo
+
+#Then install the filebeat
+- name: Install filebeat
+  ansible.builtin.yum:
+    name: filebeat
+    state: installed
+
+#File beat configuraiton which holds logstash IP address and log format etc.
+- name: Copy filebeat configuration
+  ansible.builtin.template:
+    src: filebeat.yml
+    dest: /etc/filebeat/filebeat.yml
+
+# Configuraiton has changed then filebeat needs a restart
+- name: start filebeat 
+  ansible.builtin.systemd:
+    name: filebeat
+    state: restarted
+    enabled: true

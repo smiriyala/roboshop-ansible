@@ -1,0 +1,2 @@
+# this variable used in ansible command execution setting whether filebeat to be installed or not?
+filebeat: false

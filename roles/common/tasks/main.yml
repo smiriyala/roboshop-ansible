@@ -9,3 +9,11 @@
     #exporter yml file is being called to execute
     tasks_from: exporter
   when: node_exporter
+
+# Calling elk role for each component to get in installed filebeat
+- name: Install filebeat on each component
+  ansible.builtin.import_role:
+    name: elk
+    #filebeat yml file is being called to execute
+    tasks_from: filebeat
+  when: filebeat
