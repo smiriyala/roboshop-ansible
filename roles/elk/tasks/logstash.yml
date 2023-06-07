@@ -1,0 +1,16 @@
+#copy logstash configuration from template
+# logstash.conf copied from ec2 after installed logstash using labauto
+- name: Copy Logstash Configuration
+  ansible.builtin.template:
+    src: logstash.conf
+    dest: /etc/logstash/conf.d/logstash.conf
+
+
+- name: Restart Logstash
+  ansible.builtin.systemd:
+    name: logstash
+    state: restarted
+
+#To check whether logstash service is runnign or not
+- name: Check Logstash is started or not
+  ansible.builtin.shell: sleep 30 ; netstat -lntp | grep 5044

@@ -1,0 +1,5 @@
+- name: Run logstash
+#run when elk varible is true.
+  when: elk
+  ansible.builtin.import_tasks:
+    file: logstash.yml
