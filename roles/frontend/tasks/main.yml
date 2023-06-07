@@ -32,6 +32,15 @@
     dest: /usr/share/nginx/html/
     remote_src: yes
 
+
+# This is created in part filebeat installation and configuration.
+#Copying Nginx conf file which holds the log exctracting format 
+- name: Create config in nginx for logging format
+  ansible.builtin.template:
+    src: nginx.conf
+    dest: /etc/nginx/nginx.conf
+
+
 # Add the following content - this content created in files folder, ansible structure to hold files.
 # Create Nginx Reverse Proxy Configuration.
 # vim /etc/nginx/default.d/roboshop.conf 
