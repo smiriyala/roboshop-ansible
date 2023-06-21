@@ -26,8 +26,11 @@
 #     npm install &>>${log_file}
 #     status_check $?
 - name: Install NodeJs Dependencies
-  ansible.builtin.npm:
-    path: /app
+  # ansible.builtin.npm:
+  #   path: /app
+  ansible.builtin.shell: npm install
+  args:
+    chdir: /app
 
 
 # systemd_setup
