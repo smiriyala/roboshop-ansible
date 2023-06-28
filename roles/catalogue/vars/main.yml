@@ -1,3 +1,5 @@
 component: catalogue
-schema_type: mongo
+#schema_type: mongo
+schema_type: docdb
+
 node_exporter: true
