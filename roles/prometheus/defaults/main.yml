@@ -9,4 +9,4 @@ exporter_url: https://github.com/prometheus/node_exporter/releases/download/v1.6
 # we are getting the directory created by ansible node_exporter during installaiton to execute and run
 exporter_dir: "{{ exporter_url | split('/') | last | regex_replace('.tar.gz','')}}"
 alerts_manager_url: https://github.com/prometheus/alertmanager/releases/download/v0.25.0/alertmanager-0.25.0.linux-amd64.tar.gz
-alert_manager_dir: "{{ alerts_manager | split('-') | first}}"
+alert_manager_dir: "{{ alerts_manager_url | split('/') | last | regex_replace('.tar.gz','')}}"
