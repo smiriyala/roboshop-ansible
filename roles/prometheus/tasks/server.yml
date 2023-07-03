@@ -28,7 +28,7 @@
 - name: Alerts Manager Installation
   ansible.builtin.unarchive:
     src: "{{ alerts_manager_url }}"
-    dest: /opt/alertmanager
+    dest: /opt
     remote_src: true
 
 #Alerts Manager Installation
@@ -38,8 +38,6 @@
     dest: /etc/systemd/system/alertmanager.service
     remote_src: true
 
-- name: Move foo to bar
-  command: mv /opt/alertmanager/alertmanager-0.25.0.linux-amd64 /opt/alertmanager/alertmanager
 
 
 ##Alert Manager Configuraiton
