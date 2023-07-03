@@ -11,7 +11,7 @@ receivers:
       - to: callsubbu@gmail.com
         from: callsubbu@gmail.com
         #copy smtp end point from amazon
-        smarthost: "email-smtp.${SES_SMTP_REGION}.amazonaws.com:587"
+        smarthost: "email-smtp.us-east-1.amazonaws.com:587"
         #username passwords must be used from smtp crednetials in AWS
         auth_username: "{{ SES_SMTP_USERNAME }}"
         auth_password: "{{ SES_SMTP_PASSWORD }}"
