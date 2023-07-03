@@ -23,6 +23,23 @@
   ansible.builtin.shell: netstat -lntp | grep 9090
 
 
+#Alerts Manager Installation
+- name: Alerts Manager Installation
+  ansible.builtin.unarchive:
+    src: "{{ alerts_manager }}"
+    dest: /opt
+    remote_src: true
+
+#Alerts Manager Installation
+- name: Install Alert Manager Service file setup
+# Service file placed from template folder
+- name: Copy Alerts Manager Service file to systemD exporter
+  ansible.builtin.template:
+    src: alertmanager.service
+    dest: /etc/systemd/system/alertmanager.service
+    remote_src: true
+
+
 ##Alert Manager Configuraiton
 - name: Update Alert manager configuraiton
   ansible.builtin.template:

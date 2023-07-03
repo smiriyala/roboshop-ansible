@@ -1,3 +1,5 @@
+# list added due to frontend service name is nginz but we want app name as frontend.
+
 components:
   - { name: "cart", service_name: "cart"}
   - { name: "catalogue", service_name: "catalogue"}

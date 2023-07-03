@@ -1,3 +1,6 @@
+# Jinja template looping is used here for and endfor
+# line space must be ther between jinja for loop to -alert:
+
 groups:
 - name: roboshop Service alerts
   rules:

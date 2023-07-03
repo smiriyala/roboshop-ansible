@@ -12,6 +12,7 @@ alerting:
             - localhost:9093
 
 # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+# alert_files = is variable created in reference of alerts.yml
 rule_files:
 {% for file in alert_files %}
   - "{{ file }}"
@@ -19,6 +20,7 @@ rule_files:
 
 # A scrape configuration containing exactly one endpoint to scrape:
 # Here it's Prometheus itself.
+# All AWS instances automatically scrape logs based on TAGS.
 scrape_configs:
   # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
   - job_name: "roboshop-nodes"
@@ -29,6 +31,7 @@ scrape_configs:
           - name: "tag:Monitor"
             values: ["yes"]
 
+    #Add lable names in prometheus TAG name. Called meta data for prometheus
     relabel_configs:
     - source_labels: [__meta_ec2_tag_Name]
       target_label: name

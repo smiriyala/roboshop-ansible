@@ -8,6 +8,7 @@ groups:
       severity: critical
     annotations:
       summary: Server Down
+
   - alert: high CPU usage
     expr: 100 - (avg by (name) (rate(node_cpu_seconds_total{mode="idle"}[1m])) * 100 ) > 80
     for: 2m
@@ -15,3 +16,11 @@ groups:
       severity: critical
     annotations:
       summary: High CPU usage
+
+  - alert: high Memory usage
+    expr: 100 - (((node_memory_Buffers_bytes + node_memory_Cached_bytes + node_memory_MemFree_bytes) / node_memory_MemTotal_bytes) * 100 )
+    for: 2m
+    labels:
+      severity: critical
+    annotations:
+      summary: High Memory usage
