@@ -1,13 +1,19 @@
+- name: Install java-1.8.0-openjdk.x86_64
+  ansible.builtin.yum:
+    name: java-1.8.0-openjdk.x86_64
+    state: installed
+
+
 # repo file copied into application service(i.e frontend) machine
 - name: copy Elastic repo file in service 
   ansible.builtin.template:
     src: elastic.repo
     dest: /etc/yum.repos.d/elastic.repo
 
-- name: Copy config servie to SystemD service
-  ansible.builtin.template:
-    src: elasticsearch.service
-    dest: /etc/systemd/system/elasticsearch.service
+# - name: Copy config servie to SystemD service
+#   ansible.builtin.template:
+#     src: elasticsearch.service
+#     dest: /etc/systemd/system/elasticsearch.service
 
 - name: Install and enable elasticsearch
   ansible.builtin.systemd:
