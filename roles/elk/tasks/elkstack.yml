@@ -1,7 +1,7 @@
-- name: Install java-1.8.0-openjdk.x86_64
-  ansible.builtin.yum:
-    name: java-1.8.0-openjdk.x86_64
-    state: installed
+# - name: Install java-1.8.0-openjdk.x86_64
+#   ansible.builtin.yum:
+#     name: java-1.8.0-openjdk.x86_64
+#     state: installed
 
 # repo file copied into application service(i.e frontend) machine
 - name: copy Elastic repo file in service 
