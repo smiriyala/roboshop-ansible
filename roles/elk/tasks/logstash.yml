@@ -1,3 +1,10 @@
+
+- name: Install and enable logstash
+  ansible.builtin.yum:
+    name: logstash
+    state: installed
+
+
 #copy logstash configuration from template
 # logstash.conf copied from ec2 after installed logstash using labauto
 - name: Copy Logstash Configuration
