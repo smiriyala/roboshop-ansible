@@ -6,7 +6,7 @@
 
 - name: Copy config servie to SystemD service
   ansible.builtin.template:
-    src: "elasticsearch.service"
+    src: elasticsearch.service
     dest: /etc/systemd/system/elasticsearch.service
 
 - name: Install and enable elasticsearch
