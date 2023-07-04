@@ -21,7 +21,7 @@
     name: elasticsearch
     state: installed
     enabled: yes
-    daemon-reload: yes
+
 
 # - name: Install and enable kibana
 #   ansible.builtin.systemd:
