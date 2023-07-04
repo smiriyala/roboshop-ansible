@@ -1,0 +1,24 @@
+# repo file copied into application service(i.e frontend) machine
+- name: copy Elastic repo file in service 
+  ansible.builtin.template:
+    src: elastic.repo
+    dest: /etc/yum.repos.d/elastic.repo
+
+- name: Copy config servie to SystemD service
+  ansible.builtin.template:
+    src: "{{ component}}.service"
+    dest: /etc/systemd/system/elasticsearch.service
+
+- name: Install and enable elasticsearch
+  ansible.builtin.systemd:
+    name: elasticsearch
+    state: restarted
+    enabled: yes
+    daemon-reload: yes
+
+# - name: Install and enable kibana
+#   ansible.builtin.systemd:
+#     name: kibana
+#     state: restarted
+#     enabled: yes
+#     daemon-reload: yes

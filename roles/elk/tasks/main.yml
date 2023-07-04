@@ -1,3 +1,10 @@
+- name: Run ElasticSearch
+#run when elk varible is true.
+  when: elk
+  ansible.builtin.import_tasks:
+    file: elkstack.yml
+
+
 - name: Run logstash
 #run when elk varible is true.
   when: elk
