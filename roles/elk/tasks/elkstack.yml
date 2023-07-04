@@ -14,8 +14,7 @@
   ansible.builtin.yum:
     name: elasticsearch
     state: installed
-    enabled: true
-    daemon-reload: true
+
 
 - name: copy Elastic service file
   ansible.builtin.template:
@@ -31,7 +30,9 @@
 - name: Restart and enable Elastic service
   ansible.builtin.systemd:
     name: elasticsearch
-    state: restarted
+    state: started
+    # enabled: true
+    # daemon-reload: true
 
 
 # - name: Install and enable kibana
