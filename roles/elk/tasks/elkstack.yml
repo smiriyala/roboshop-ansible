@@ -10,16 +10,16 @@
     src: elastic.repo
     dest: /etc/yum.repos.d/elastic.repo
 
+- name: Install and enable elasticsearch
+  ansible.builtin.yum:
+    name: elasticsearch
+    state: installed
+
 - name: Copy config servie to SystemD service
   ansible.builtin.template:
     src: elasticsearch.yml
     dest: /etc/elasticsearch/elasticsearch.yml
 
-
-- name: Install and enable elasticsearch
-  ansible.builtin.yum:
-    name: elasticsearch
-    state: installed
 
 
 # - name: Install and enable kibana
