@@ -16,23 +16,23 @@
     state: installed
 
 
-- name: copy Elastic service file
-  ansible.builtin.template:
-    src: elasticsearch.service
-    dest: /usr/lib/systemd/system/elasticsearch.service
+# - name: copy Elastic service file
+#   ansible.builtin.template:
+#     src: elasticsearch.service
+#     dest: /usr/lib/systemd/system/elasticsearch.service
     
 
-- name: Copy config servie to SystemD service
-  ansible.builtin.template:
-    src: elasticsearch.yml
-    dest: /etc/elasticsearch/elasticsearch.yml
+# - name: Copy config servie to SystemD service
+#   ansible.builtin.template:
+#     src: elasticsearch.yml
+#     dest: /etc/elasticsearch/elasticsearch.yml
 
-- name: Restart and enable Elastic service
-  ansible.builtin.systemd:
-    name: elasticsearch
-    state: started
-    # enabled: true
-    # daemon-reload: true
+# - name: Restart and enable Elastic service
+#   ansible.builtin.systemd:
+#     name: elasticsearch
+#     state: started
+#     # enabled: true
+#     # daemon-reload: true
 
 
 # - name: Install and enable kibana
