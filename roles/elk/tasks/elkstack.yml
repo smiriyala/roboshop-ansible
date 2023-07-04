@@ -19,7 +19,7 @@
 - name: Install and enable elasticsearch
   ansible.builtin.yum:
     name: elasticsearch
-    state: restarted
+    state: installed
     enabled: yes
     daemon-reload: yes
 
