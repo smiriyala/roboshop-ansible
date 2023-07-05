@@ -31,8 +31,8 @@
     dest: /usr/lib/systemd/system/elasticsearch.service
 
 - name: Restart and enable Elastic service
-  ansible.builtin.service:
-    name: elasticsearch.service
+  ansible.builtin.systemd:
+    name: elasticsearch
     state: started
     enabled: true
     daemon-reload: true
