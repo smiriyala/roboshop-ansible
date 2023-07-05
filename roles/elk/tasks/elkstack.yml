@@ -26,7 +26,7 @@
 #     enabled: yes
 
 - name: Restart and enable Elastic service
-  ansible.builtin.systemd:
+  ansible.builtin.service:
     name: elasticsearch.service
     state: started
     enabled: true
