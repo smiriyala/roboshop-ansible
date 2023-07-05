@@ -14,6 +14,7 @@
     src: /opt/prometheus/{{prometheus_dir}}
     dest: /opt/prometheus
     remote_src: true
+    debugger: on_failed
 
 # - name: Recursively remove directory
 #   ansible.builtin.file:
