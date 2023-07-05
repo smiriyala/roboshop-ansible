@@ -19,12 +19,18 @@
     src: elasticsearch.yml
     dest: /etc/elasticsearch/elasticsearch.yml
 
-- name: Starting ElasticSearch service
-  ansible.builtin.systemd:
-    name: elasticsearch
-    state: started
-    enabled: yes
+# - name: Starting ElasticSearch service
+#   ansible.builtin.systemd:
+#     name: elasticsearch
+#     state: started
+#     enabled: yes
 
+- name: Restart and enable Elastic service
+  ansible.builtin.systemd:
+    name: elasticsearch.service
+    state: started
+    enabled: true
+    daemon-reload: true
 
 # - name: Install and kibana
 #   ansible.builtin.yum:
