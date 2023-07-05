@@ -16,7 +16,7 @@
 #     remote_src: true
 
 - name: move installed package to different foldere
-  ansible.builtin.shell: mv /opt/{{prometheus_dir}} /opt/prometheus/
+  ansible.builtin.shell: mv /opt/{{prometheus_dir}}/ /opt/prometheus/
 
 
 # - name: Recursively remove directory
