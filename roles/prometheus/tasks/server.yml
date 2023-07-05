@@ -11,8 +11,9 @@
 
 - name: Copy Prometheus Installed folder to prometheus folder
   ansible.builtin.copy:
-    src: /opt/prometheus/"{{prometheus_dir}}"
+    src: /opt/prometheus/{{prometheus_dir}}
     dest: /opt/prometheus
+    remote_src: true
 
 # - name: Recursively remove directory
 #   ansible.builtin.file:
