@@ -66,5 +66,3 @@ TimeoutStartSec=900
 
 [Install]
 WantedBy=multi-user.target
-
-# Built for packages-8.8.2 (packages)

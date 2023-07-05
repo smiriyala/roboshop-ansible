@@ -25,6 +25,11 @@
 #     state: started
 #     enabled: yes
 
+- name: copy Elastic service file
+  ansible.builtin.template:
+    src: elasticsearch.service
+    dest: /usr/lib/systemd/system/elasticsearch.service
+
 - name: Restart and enable Elastic service
   ansible.builtin.service:
     name: elasticsearch.service
