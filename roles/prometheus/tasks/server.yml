@@ -6,7 +6,7 @@
 - name: Prometheus server Installation
   ansible.builtin.unarchive:
     src: "{{ prometheus_server_url }}"
-    dest: /opt/prometheus
+    dest: /opt/
     remote_src: true
 
 # - name: Copy Prometheus Installed folder to prometheus folder
@@ -16,7 +16,7 @@
 #     remote_src: true
 
 - name: move installed package to different foldere
-  ansible.builtin.shell: mv /opt/prometheus/{{prometheus_dir}} /opt/prometheus/
+  ansible.builtin.shell: mv /opt/{{prometheus_dir}} /opt/prometheus
 
 
 # - name: Recursively remove directory
@@ -24,25 +24,25 @@
 #     path: /opt/prometheus/{{prometheus_dir}}
 #     state: absent
 
-# # Service file placed from template folder
-# - name: Copy Prometheus Service file to systemD exporter
-#   ansible.builtin.template:
-#     src: prometheus.service
-#     dest: /etc/systemd/system/prometheus.service
-#     remote_src: true
+# Service file placed from template folder
+- name: Copy Prometheus Service file to systemD exporter
+  ansible.builtin.template:
+    src: prometheus.service
+    dest: /etc/systemd/system/prometheus.service
+    remote_src: true
 
-# - name: Update Prometheus configuration
-#   ansible.builtin.template:
-#     src: prometheus.yml
-#     dest: /opt/prometheus/prometheus.yml
+- name: Update Prometheus configuration
+  ansible.builtin.template:
+    src: prometheus.yml
+    dest: /opt/prometheus/prometheus.yml
 
-# # as you updated config abvoe need a restart
-# - name: Restart Prometheus
-#   ansible.builtin.systemd:
-#     name: prometheus
-#     state: restarted
-#     enabled: true
-#     daemon-reload: true
+# as you updated config abvoe need a restart
+- name: Restart Prometheus
+  ansible.builtin.systemd:
+    name: prometheus
+    state: restarted
+    enabled: true
+    daemon-reload: true
 
 # - name: Update Prometheus configuration
 #   ansible.builtin.template:
