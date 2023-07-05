@@ -6,7 +6,7 @@
 - name: Prometheus server Installation
   ansible.builtin.unarchive:
     src: "{{ prometheus_server_url }}"
-    dest: /opt/
+    dest: /opt/prometheus
     remote_src: true
 
 # - name: Copy Prometheus Installed folder to prometheus folder
@@ -15,8 +15,8 @@
 #     dest: /opt/prometheus
 #     remote_src: true
 
-- name: move installed package to different foldere
-  ansible.builtin.shell: mv /opt/{{prometheus_dir}}/ /opt/prometheus/
+# - name: move installed package to different foldere
+#   ansible.builtin.shell: mv /opt/{{prometheus_dir}}/ /opt/prometheus/
 
 
 # - name: Recursively remove directory
@@ -34,7 +34,7 @@
 - name: Update Prometheus configuration
   ansible.builtin.template:
     src: prometheus.yml
-    dest: /opt/prometheus/prometheus.yml
+    dest: /opt/prometheus/{{prometheus_dir}}/prometheus.yml
 
 # as you updated config abvoe need a restart
 - name: Restart Prometheus
