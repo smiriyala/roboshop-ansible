@@ -9,7 +9,7 @@ After=network-online.target
 [Service]
 Type=simple
 WorkingDirectory=/opt/prometheus/{{prometheus_dir}}
-ExecStart=/opt/prometheus/{{prometheus_dir}}/promethus
+ExecStart=/opt/prometheus/{{prometheus_dir}}/prometheus
 
 [Install]
 WantedBy=multi-user.target
