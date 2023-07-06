@@ -41,6 +41,7 @@
     name: prometheus
     state: started
     enabled: true
+    daemon-reload: true
 
 # - name: Update Prometheus configuration
 #   ansible.builtin.template:
