@@ -1,6 +1,6 @@
 - name: Update Grafana Repo
   ansible.builtin.template:
-    src: grafana.rep
+    src: grafana.repo
     dest: /etc/yum.repos.d/grafana.repo
     remote_src: true
 
