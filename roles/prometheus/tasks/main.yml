@@ -4,8 +4,19 @@
     # it only run when prometheus_server variable is set to true
   when: prometheus_server
 
+- name: Grafana Server Installation
+  ansible.builtin.import_tasks:
+    file: grafana.yml
+    # it only run when prometheus_server variable is set to true
+  when: prometheus_server
+
 - name: Prometheus Server
   ansible.builtin.import_tasks:
     file: exporter.yml
     # it only run when node_exported is set to true
   when: node_exporter
+
+
+
+  # ansible-pull -i localhost, -U https://github.com/smiriyala/roboshop-ansible roboshop.yml -e role_name=prometheus -e prometheus_server=true
+  # ansible-pull -i localhost, -U https://github.com/smiriyala/roboshop-ansible roboshop.yml -e role_name=prometheus -e prometheus_server=true
