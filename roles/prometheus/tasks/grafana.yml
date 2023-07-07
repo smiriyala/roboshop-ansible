@@ -8,10 +8,18 @@
   ansible.builtin.yum:
     name: grafana
     state: installed
+
+- name: start and enable grafana
+  ansible.builtin.systemd:
+    name: grafana-server
+    state: started
     enabled: true
 
-# - name: Restart Prometheus
-#   ansible.builtin.systemd:
-#     name: grafana
-#     state: started
-#     enabled: true
+# - name: wait for service up
+#   uri:
+#     url: "http://127.0.0.1:3000"
+#     status_code: 200
+#   register: __result
+#   until: __result.status == 200
+#   retries: 120
+#   delay: 1

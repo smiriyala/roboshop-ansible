@@ -43,6 +43,12 @@
     enabled: true
     daemon-reload: true
 
+# - name: reload_prometheus
+#   ansible.builtin.uri:
+#     url: http://localhost:9090/-/reload
+#     method: POST
+#     status_code: 200
+
 # - name: Update Prometheus configuration
 #   ansible.builtin.template:
 #     src: prometheus.yml
