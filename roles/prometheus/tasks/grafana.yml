@@ -9,8 +9,8 @@
     name: grafana
     state: installed
 
-- name: Restart Prometheus
-  ansible.builtin.systemd:
-    name: grafana
-    state: started
-    enabled: true
+# - name: Restart Prometheus
+#   ansible.builtin.systemd:
+#     name: grafana
+#     state: started
+#     enabled: true
