@@ -7,7 +7,7 @@
 - name: Grafana Installation
   ansible.builtin.yum:
     name: grafana
-    state: started
+    state: installed
     enabled: true
 
 # - name: Restart Prometheus
