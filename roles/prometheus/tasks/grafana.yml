@@ -2,6 +2,7 @@
   ansible.builtin.template:
     src: grafana.rep
     dest: /etc/yum.repos.d/grafana.repo
+    remote_src: true
 
 - name: Grafana Installation
   ansible.builtin.yum:
