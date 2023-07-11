@@ -10,7 +10,13 @@
     # it only run when prometheus_server variable is set to true
   when: prometheus_server
 
-- name: Prometheus Server
+- name: Alerts Manager Server Installation
+  ansible.builtin.import_tasks:
+    file: alertsmanager.yml
+    # it only run when prometheus_server variable is set to true
+  when: prometheus_server
+
+- name: Node Exporter Server
   ansible.builtin.import_tasks:
     file: exporter.yml
     # it only run when node_exported is set to true
