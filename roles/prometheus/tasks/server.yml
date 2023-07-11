@@ -35,6 +35,24 @@
     src: prometheus.yml
     dest: /opt/prometheus/{{prometheus_dir}}/prometheus.yml
 
+#Cppying Aleart configuration to prometheus 
+#2nd update - Implemtened LOOP to handle for every servcie
+- name: Copy Alerts confugraiotn for server down
+  ansible.builtin.template:
+    src: "{{ item }}"
+    dest: /opt/prometheus/{{ item }}
+  loop: "{{ alert_files }}"
+
+# - name: Restart Prometheus
+#   ansible.builtin.systemd:
+#     name: prometheus
+#     state: restarted
+#     enabled: true
+#     daemon-reload: true
+
+- name: Check prometheus is started
+  ansible.builtin.shell: netstat -lntp | grep 9090
+
 # as you updated config abvoe need a restart
 - name: Restart Prometheus
   ansible.builtin.systemd:

@@ -1,21 +1,3 @@
-#Cppying Aleart configuration to prometheus 
-#2nd update - Implemtened LOOP to handle for every servcie
-- name: Copy Alerts confugraiotn for server down
-  ansible.builtin.template:
-    src: "{{ item }}"
-    dest: /opt/prometheus/{{ item }}
-  loop: "{{ alert_files }}"
-
-- name: Restart Prometheus
-  ansible.builtin.systemd:
-    name: prometheus
-    state: restarted
-    enabled: true
-    daemon-reload: true
-
-- name: Check prometheus is started
-  ansible.builtin.shell: netstat -lntp | grep 9090
-
 
 #Alerts Manager Installation
 # WIP
@@ -31,8 +13,6 @@
     src: alertmanager.service
     dest: /etc/systemd/system/alertmanager.service
     remote_src: true
-
-
 
 ##Alert Manager Configuraiton
 - name: Update Alert manager configuraiton
