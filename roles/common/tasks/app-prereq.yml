@@ -38,8 +38,17 @@
 #     unzip /tmp/${component}.zip &>>${log_file}
 #     status_check $?
 
+# DOWNLOAD - from S3 BUCKET.
+# - name: Download {{ component }} content and extracting
+#   ansible.builtin.unarchive: 
+#     src: https://roboshop-artifacts.s3.amazonaws.com/{{ component }}.zip
+#     dest: /app
+#     remote_src: true 
+
+#Commented Above AWS donwload. 
+# NOW ALL APP CODE POINTING TO NEXUS REPO. 
 - name: Download {{ component }} content and extracting
   ansible.builtin.unarchive: 
-    src: https://roboshop-artifacts.s3.amazonaws.com/{{ component }}.zip
+    src: http://{{ lookup('aws_ssm', '{{env}}.nexus.user', region='us-east-1') }}:{{ lookup('aws_ssm', '{{env}}.nexus.pass', region='us-east-1') }}@nexus.devopsforyou.online:8081/repository/{{component}}/{{component}}-{{app_version}}.zip
     dest: /app
     remote_src: true 

@@ -2,9 +2,17 @@
 # yum install maven -y &>>${log_file}
 # status_check $?
 
-- name: Install Maven
+
+##THIS COMMENTED IN PART OF NEXUS IMPLEI. MAVEN NOT REQUIRED AS WE ARE USING ARTIFACTS.
+# - name: Install Maven
+#   ansible.builtin.yum:
+#     name: maven
+#     state: installed
+
+##THIS COMMENTED IN PART OF NEXUS IMPLEI. JAVA 11 REQUIRED
+- name: Install JAVA11
   ansible.builtin.yum:
-    name: maven
+    name: java-17-openjdk
     state: installed
 
 # #prereq function
@@ -13,14 +21,16 @@
   ansible.builtin.import_tasks:
     file: app-prereq.yml
 
+
+##COMMEND IN PART OF NEXUS IMPLI
 # print_head "Donwload Dependencies & Packages"
 # mvn clean package &>>${log_file}
 # mv target/${component}-1.0.jar ${component}.jar &>>${log_file}
 # status_check $?
-- name: Maven download dependences and run build package
-  ansible.builtin.shell: mvn clean package; mv target/{{ component }}-1.0.jar {{ component }}.jar
-  args:
-    chdir: /app
+# - name: Maven download dependences and run build package
+#   ansible.builtin.shell: mvn clean package; mv target/{{ component }}-1.0.jar {{ component }}.jar
+#   args:
+#     chdir: /app
     # this goes to /app directory hten execute above commands in shell.
 
 # #setup schema function

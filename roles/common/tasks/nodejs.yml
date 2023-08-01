@@ -21,16 +21,16 @@
   ansible.builtin.import_tasks:
     file: app-prereq.yml
 
-
+##COMMEND IN PART OF NEXUS IMPLI
 #     print_head "install nodeJs Dependents"
 #     npm install &>>${log_file}
 #     status_check $?
-- name: Install NodeJs Dependencies
-  # ansible.builtin.npm:
-  #   path: /app
-  ansible.builtin.shell: npm install
-  args:
-    chdir: /app
+# - name: Install NodeJs Dependencies
+#   # ansible.builtin.npm:
+#   #   path: /app
+#   ansible.builtin.shell: npm install
+#   args:
+#     chdir: /app
 
 
 # systemd_setup
