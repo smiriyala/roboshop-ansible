@@ -21,17 +21,24 @@
     state: directory
 
 
+##COMENTED IN PART OF NEXUS REPO DOWNLOAD
 # Download the frontend content
 # curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend.zip 
 # Extract the frontend content.
 # cd /usr/share/nginx/html 
 # unzip /tmp/frontend.zip
-- name: Unarchive a file that needs to be downloaded (added in 2.0)
-  ansible.builtin.unarchive:
-    src: https://roboshop-artifacts.s3.amazonaws.com/frontend.zip 
-    dest: /usr/share/nginx/html/
-    remote_src: yes
+# - name: Unarchive a file that needs to be downloaded (added in 2.0)
+#   ansible.builtin.unarchive:
+#     src: https://roboshop-artifacts.s3.amazonaws.com/frontend.zip 
+#     dest: /usr/share/nginx/html/
+#     remote_src: yes
 
+##ADDED IN PART OF NEXUS REPO DOWNLOAD
+- name: Download {{ component }} content and extracting
+  ansible.builtin.unarchive: 
+    src: http://{{ lookup('aws_ssm', '{{env}}.nexus.user', region='us-east-1') }}:{{ lookup('aws_ssm', '{{env}}.nexus.pass', region='us-east-1') }}@nexus.devopsforyou.online:8081/repository/{{component}}/{{component}}-{{app_version}}.zip
+    dest: /usr/share/nginx/html/
+    remote_src: true 
 
 # This is created in part filebeat installation and configuration.
 #Copying Nginx conf file which holds the log exctracting format 
