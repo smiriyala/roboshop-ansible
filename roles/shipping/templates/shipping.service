@@ -5,7 +5,7 @@ Description=Shipping Service
 User={{ lookup('aws_ssm', '{{env}}.{{component}}.user', region='us-east-1') }}
 Environment=CART_ENDPOINT={{ lookup('aws_ssm', '{{env}}.{{component}}.cart_endpoint', region='us-east-1') }}
 Environment=DB_HOST={{ lookup('aws_ssm', '{{env}}.rds.endpoint', region='us-east-1') }}
-ExecStart=/bin/java -xms2048m -Xmx3200m -jar /app/shipping.jar
+ExecStart=/bin/java -Xms2048m -Xmx3200m -jar /app/shipping.jar
 SyslogIdentifier=shipping
 
 [Install]
