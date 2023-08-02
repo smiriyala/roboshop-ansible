@@ -1,1 +1,3 @@
+##This App_version variable will take least priority than the same variable in each component of 
+## vars folder. Variable priority Default is least priority than vars folder.
 app_version: v1.0.0
