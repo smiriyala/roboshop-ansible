@@ -72,7 +72,19 @@
         name: mysql
         state: installed
 
+    ## This step added in part session-63 of error tuning. Schema is loading everytime irrespective of checking whether it is loaded earlier or not? hence this validation step created. We can use other schema validation tools like liquibase as well. 
+  
+    - name: Check Schema load status_check
+      ansible.builtin.shell: echo 'show databases' | mysql -h {{ lookup('aws_ssm', '{{env}}.rds.endpoint', region='us-east-1') }} -u{{ lookup('aws_ssm', '{{env}}.rds.user', region='us-east-1') }} -p{{ lookup('aws_ssm', '{{env}}.rds.pass', region='us-east-1') }} | grep cities
+      register: schema_status
+      ignore_errors: true
+
+    - name: print
+      debug:
+        msg: "{{schema_status}}"
+
     - name: Load Schema for mysql
       #ansible.builtin.shell: mysql -h mysql-dev.devopsforyou.online -uroot -pRoboShop@1 < /app/schema/{{ component }}.sql
       #adding RDS host instead of mysql 
       ansible.builtin.shell: mysql -h {{ lookup('aws_ssm', '{{env}}.rds.endpoint', region='us-east-1') }} -u{{ lookup('aws_ssm', '{{env}}.rds.user', region='us-east-1') }} -p{{ lookup('aws_ssm', '{{env}}.rds.pass', region='us-east-1') }} < /app/schema/{{ component }}.sql
+      when: schema_status.rc == 1
