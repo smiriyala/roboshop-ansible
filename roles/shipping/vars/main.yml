@@ -1,3 +1,4 @@
 component: shipping
 schema_type: mysql
 node_exporter: true
+## # java xms values using in percentage : -XX:MinRAMPercentage=70 -XX:MaxRAMPercentage=90
