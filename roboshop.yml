@@ -1,5 +1,8 @@
 - name: Run roboshop Setup
   hosts: all
+  # /Auto scalling both instances will start at same time, to control 1 instance to install at a time 
+  # /one after another use serial:1
+  #serial: 1
   #become is escalate you to the root user
   become: true
   roles:
